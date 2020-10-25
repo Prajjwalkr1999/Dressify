@@ -31,6 +31,7 @@ for (i, imagePath) in enumerate(imagePaths):
 		len(imagePaths)))
     name = imagePath.split(os.path.sep)[-2]
     print(name)
+    print(imagePath)
 	# load the input image and convert it from BGR (OpenCV ordering)
 	# to dlib ordering (RGB)
     image = cv2.imread(imagePath)
