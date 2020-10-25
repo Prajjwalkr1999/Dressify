@@ -45,10 +45,30 @@ body {
 }
 
 .container {
-  margin: 80px auto 0 auto;
-  max-width: 1200px;
+  margin: 65px auto 0 auto;
+  /* max-width: 1200px; */
 }
 
 .nav-container {
   margin: auto;
+}
+div.image {
+  background-image: url(https://images.pexels.com/photos/936023/pexels-photo-936023.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  max-width: 100%;
+  height: auto;
+  text-align: justify;
+  padding-left: 20%;
+  color: darkcyan;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  padding: 15%;
+  font-size: larger;
+}
+
+.top-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
 }
