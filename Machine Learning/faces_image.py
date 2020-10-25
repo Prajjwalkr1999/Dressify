@@ -7,8 +7,9 @@ Created on Sat Oct 24 02:54:14 2020
 
 import face_recognition
 import argparse
-import pickle
+import pickle 
 import cv2
+import matplotlib.pyplot as plt
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-e", "--encodings", type=str,default="encodings.pickle",
@@ -34,42 +35,40 @@ boxes = face_recognition.face_locations(rgb,
 	model=args["detection_method"])
 encodings = face_recognition.face_encodings(rgb, boxes)
 # initialize the list of names for each face detected
-names = []
+names={}
+for f in data["names"]:
+    names[f]=0
 # loop over the facial embeddings
 i=0
-
+namevsper ={} 
+# dictionary to hold final name vs percentage of match
 for encoding in encodings:
 	# attempt to match each face in the input image to our known
 	# encodings
-    print(i)
-    i=i+1
-    matches = face_recognition.compare_faces(data["encodings"],
-		encoding)
-    name = "Unknown"
-    if True in matches:
-		# find the indexes of all matched faces then initialize a
-		# dictionary to count the total number of times each face
-		# was matched
-        matchedIdxs = [i for (i, b) in enumerate(matches) if b]
-        counts = {}
-		# loop over the matched indexes and maintain a count for
-		# each recognized face face
-        for i in matchedIdxs:
-            name = data["names"][i]
-            counts[name] = counts.get(name, 0) + 1
-		# determine the recognized face with the largest number of
-		# votes (note: in the event of an unlikely tie Python will
-		# select first entry in the dictionary)
-        name = max(counts, key=counts.get)
-	
-	# update the list of names
-    names.append(name)
-
-for ((top, right, bottom, left), name) in zip(boxes, names):
+    
+    percents = face_recognition.face_distance(data["encodings"],
+		encoding)  
+    #Found euclidean distance from the faces
+    for i in range (0,len(percents)):
+        names[data["names"][i]]= names[data["names"][i]]+ percents[i]
+             #Added them to correspsonding names, now names contain their distances from face
+    max_dist=-1
+    #Calculating percentage of match based on least matching category
+    for n in names:
+        max_dist=max(max_dist,names[n])
+        
+    for n in names:
+        namevsper[n]=((max_dist-names[n])/max_dist)*100
+        
+    print (namevsper)
+for ((top, right, bottom, left), name) in zip(boxes, namevsper):
 	# draw the predicted face name on the image
 	cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2)
 	y = top - 15 if top - 15 > 15 else top + 15
-	cv2.putText(image, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,0.75, (0, 255, 0), 2)
-# show the output image
+# show the output image and bar graph of percentage matches
+
+plt.bar(namevsper.keys(),namevsper.values())
+
 cv2.imshow("Image", image)
+plt.show()
 cv2.waitKey(0);
