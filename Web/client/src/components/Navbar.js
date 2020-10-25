@@ -17,7 +17,7 @@ export class navbar extends Component {
           <Button color="inherit" component={Link} to="/signup">
             Signup
           </Button>
-          <Button color="inherit" component={Link} to="/">
+          <Button color="inherit" component={Link} to="/home">
             Home
           </Button>
           <Button color="inherit" component={Link} to="/profile">
