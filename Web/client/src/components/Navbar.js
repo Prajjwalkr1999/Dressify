@@ -9,6 +9,43 @@ import Button from "@material-ui/core/Button";
 import { withauthprov } from "./Session";
 import { withFirebase } from "./Firebase";
 
+const notsignedin = () => {
+  return (
+    <div>
+      <Button color="inherit" component={Link} to="/login">
+        Login
+      </Button>
+      <Button color="inherit" component={Link} to="/signup">
+        Signup
+      </Button>
+    </div>
+  );
+};
+
+const signedin = (firebase) => {
+  return (
+    <div>
+      <Button color="inherit" component={Link} to="/home">
+        Home
+      </Button>
+      <Button color="inherit" component={Link} to="/profile">
+        Profile
+      </Button>
+      <Button color="inherit" component={Link} to="/cart">
+        cart
+      </Button>
+      <Button
+        color="inherit"
+        component={Link}
+        to="/"
+        onClick={firebase.doSignOut}
+      >
+        Signout
+      </Button>
+    </div>
+  );
+};
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -17,33 +54,7 @@ class Navbar extends Component {
     return (
       <AppBar>
         <Toolbar className="nav-container">
-          <Button color="inherit" component={Link} to="/login">
-            Login
-          </Button>
-          <Button color="inherit" component={Link} to="/signup">
-            Signup
-          </Button>
-          <Button color="inherit" component={Link} to="/home">
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/profile">
-            Profile
-          </Button>
-          <Button color="inherit" component={Link} to="/cart">
-            cart
-          </Button>
-          {this.props.authUser ? (
-            <Button
-              color="inherit"
-              component={Link}
-              to="/"
-              onClick={this.props.firebase.doSignOut}
-            >
-              Signout
-            </Button>
-          ) : (
-            <p>please signin</p>
-          )}
+          {this.props.authUser ? signedin(this.props.firebase) : notsignedin()}
         </Toolbar>
       </AppBar>
     );
