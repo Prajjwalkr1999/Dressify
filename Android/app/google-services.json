@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "764342538051",
+    "firebase_url": "https://dressify-59ab5.firebaseio.com",
+    "project_id": "dressify-59ab5",
+    "storage_bucket": "dressify-59ab5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764342538051:android:aee293738bf0443d0a29f6",
+        "android_client_info": {
+          "package_name": "com.example.dresstify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764342538051-73dn1q55k2if2p4shbe0l5p5hhr6oe4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-Gv8BRx0n69DpKtvCSq7oMlQd0AJesDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764342538051-73dn1q55k2if2p4shbe0l5p5hhr6oe4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
