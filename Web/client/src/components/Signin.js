@@ -135,7 +135,7 @@ class SignInBase extends Component {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/passchange" variant="body2">
+                <Link href="/forpass" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
