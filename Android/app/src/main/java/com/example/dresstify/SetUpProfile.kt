@@ -7,12 +7,15 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
+import androidx.versionedparcelable.VersionedParcelize
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.*
@@ -32,6 +35,9 @@ class SetUpProfile : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mAuth = FirebaseAuth.getInstance()
+
+        val database = FirebaseDatabase.getInstance().getReference("users")
+
 
         //for storage
         var storageRef = FirebaseStorage.getInstance().reference
@@ -185,7 +191,7 @@ class SetUpProfile : AppCompatActivity() {
                             .addOnSuccessListener {
                                 Log.i(TAG_setupProfile, "Image location:$it")
 
-//                               saveUsertoFirebaseDatabase(it.toString())
+                               saveUsertoFirebaseDatabase(it.toString())
                             }
                 }
                 .addOnFailureListener{
@@ -194,6 +200,28 @@ class SetUpProfile : AppCompatActivity() {
 
     }
 
+    private fun saveUsertoFirebaseDatabase(profileimageurl: String){
 
-    //TODO: test push one
+        val username: EditText = findViewById(R.id.person_name_id)
+        val email:EditText = findViewById(R.id.person_email_id)
+        val password: EditText = findViewById(R.id.person_password_id)
+        val User = user(username.text.toString(),email?.text.toString(),password?.text.toString(),profileimageurl)
+
+        val database = FirebaseDatabase.getInstance().getReference("users")
+        val id = database.push().key
+        database.child(id!!).setValue(User)
+                .addOnCompleteListener{
+                    Log.i(TAG_setupProfile,"User is added in users successfully")
+
+                }
+                .addOnFailureListener{
+                    Log.i(TAG_setupProfile,"User is not added to database")
+                }
+    }
+
+
+}
+
+class user(val username: String,val email_id: String,val password: String,val profileimageurl: String) {
+    constructor() : this("","","","")
 }
