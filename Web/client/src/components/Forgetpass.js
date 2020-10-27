@@ -31,7 +31,6 @@ function Copyright() {
 
 const INITIAL_STATE = {
   email: "",
-  password: "",
   error: null,
 };
 
@@ -55,35 +54,41 @@ const useStyles = {
   },
 };
 
-class SignInBase extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { ...INITIAL_STATE };
-  }
+   
+   
+class PasswordForgetFormBase extends Component {
+    constructor(props) {
+        super(props);
 
-  onSubmit = (event) => {
-    const { email, password } = this.state;
+        this.state = { ...INITIAL_STATE };
+    }
 
-    this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push("/home");
-      })
-      .catch((error) => {
-        this.setState({ error });
-      });
+    onSubmit = event => {
+        const { email } = this.state;
 
-    event.preventDefault();
-  };
+        this.props.firebase
+        .doPasswordReset(email)
+        .then(() => {
+            this.setState({ ...INITIAL_STATE });
+            this.props.history.push("/login");
+        })
+        .catch(error => {
+            this.setState({ error });
+        });
+        
+        event.preventDefault();
+    };
 
-  onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
   render() {
-    const { classes } = this.props;
+    //   <h1></h1>
+    // const { email, error } = this.state;
+    // const isInvalid = email === '';
+    const {classes} = this.props;
+    const isInvalid = this.state.email === '';
 
     return (
       <Container component="main" maxWidth="xs">
@@ -93,7 +98,7 @@ class SignInBase extends Component {
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Forgot Password
           </Typography>
           <form className={classes.form} noValidate onSubmit={this.onSubmit}>
             <TextField
@@ -108,43 +113,22 @@ class SignInBase extends Component {
               autoFocus
               onChange={this.onChange}
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={this.onChange}
-            />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
             <Button
+              disabled={isInvalid}
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              // href = "/login"
             >
-              Sign In
+              Reset My Password
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="/forpass" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            {this.state.error && <p>{this.state.error.message}</p>}
           </form>
         </div>
         <Box mt={8}>
@@ -154,7 +138,14 @@ class SignInBase extends Component {
     );
   }
 }
+// const PasswordForgetLink = () => (
+//     <p>
+//       <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
+//     </p>
+// );
 
-const SignIn = withRouter(withFirebase(withStyles(useStyles)(SignInBase)));
-
-export default SignIn;
+// export default PasswordForgetPage;
+ 
+const PasswordForgetForm = withRouter(withFirebase(withStyles(useStyles)(PasswordForgetFormBase)));
+ 
+export default PasswordForgetForm ;

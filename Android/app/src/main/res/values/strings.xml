@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dresstify</string>
+    <string name="nav_open">nav_open</string>
+    <string name="nav_close">nav_close</string>
+</resources>

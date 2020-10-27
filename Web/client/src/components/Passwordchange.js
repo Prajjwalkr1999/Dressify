@@ -30,9 +30,9 @@ function Copyright() {
 }
 
 const INITIAL_STATE = {
-  email: "",
-  password: "",
-  error: null,
+    passwordOne: '',
+    passwordTwo: '',
+    error: null,
 };
 
 const useStyles = {
@@ -55,36 +55,36 @@ const useStyles = {
   },
 };
 
-class SignInBase extends Component {
-  constructor(props) {
-    super(props);
+class PasswordChangeForm extends Component {
+    constructor(props) {
+        super(props);
 
-    this.state = { ...INITIAL_STATE };
-  }
+        this.state = { ...INITIAL_STATE };
+    }
 
-  onSubmit = (event) => {
-    const { email, password } = this.state;
+    onSubmit = event => {
+        const { passwordOne } = this.state;
 
-    this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push("/home");
-      })
-      .catch((error) => {
-        this.setState({ error });
-      });
+        this.props.firebase
+        .doPasswordUpdate(passwordOne)
+        .then(() => {
+            this.setState({ ...INITIAL_STATE });
+        })
+        .catch(error => {
+            this.setState({ error });
+        });
 
-    event.preventDefault();
-  };
+        event.preventDefault();
+    };
 
-  onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
 
   render() {
     const { classes } = this.props;
-
+    const isInvalid =
+      this.state.passwordOne !== this.state.passwordTwo || this.state.passwordOne === '';
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -101,10 +101,10 @@ class SignInBase extends Component {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="passwordOne"
+              label="Enter New Password"
+              name="passwordOne"
+              autoComplete="passwordOne"
               autoFocus
               onChange={this.onChange}
             />
@@ -113,10 +113,10 @@ class SignInBase extends Component {
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
+              name="passwordTwo"
+              label="Confirm New Password"
+              type="passwordTwo"
+              id="passwordTwo"
               autoComplete="current-password"
               onChange={this.onChange}
             />
@@ -125,26 +125,16 @@ class SignInBase extends Component {
               label="Remember me"
             /> */}
             <Button
+              disabled={isInvalid}
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Reset My Password
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="/forpass" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            {this.state.error && <p>{this.state.error.message}</p>}
           </form>
         </div>
         <Box mt={8}>
@@ -155,6 +145,6 @@ class SignInBase extends Component {
   }
 }
 
-const SignIn = withRouter(withFirebase(withStyles(useStyles)(SignInBase)));
+const PassowrdChange = withRouter(withFirebase(withStyles(useStyles)(PasswordChangeForm)));
 
-export default SignIn;
+export default PassowrdChange;
