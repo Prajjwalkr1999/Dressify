@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 
 
 class Profile : AppCompatActivity() {
@@ -22,6 +23,9 @@ class Profile : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.title = "DRESSIFY"
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("users")
 
@@ -31,6 +35,7 @@ class Profile : AppCompatActivity() {
         val username_profile: TextView = findViewById(R.id.profile_user)
         val image_id:ImageView = findViewById(R.id.profile_image_id)
 
+        val username_profile1: TextView = findViewById((R.id.profile_username))
         val email_profile: TextView = findViewById(R.id.profile_emailid)
         val phoneno: TextView = findViewById(R.id.profile_phoneno_id)
 
@@ -46,10 +51,12 @@ class Profile : AppCompatActivity() {
                     if(user_data?.email_id==email_id){
                         Log.i("profile","user id matched!!")
                         username_profile.text = user_data?.username
-                        //TODO: set image
+                        username_profile1.text = user_data?.username
                         email_profile.text = user_data?.email_id
                         phoneno.text = user_data?.phoneno
 
+
+                        Picasso.get().load(user_data?.profileimageurl).into(image_id)
                     }
 
 

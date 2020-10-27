@@ -21,7 +21,7 @@ class User_Page : AppCompatActivity() {
 
 
         val actionBar = supportActionBar
-        actionBar?.title = "\uD835\uDCD3\uD835\uDCFB\uD835\uDCEE\uD835\uDCFC\uD835\uDCFC\uD835\uDCF2\uD835\uDCEF\uD835\uDD02"
+        actionBar?.title = "\uD835\uDE0B\uD835\uDE19\uD835\uDE0C\uD835\uDE1A\uD835\uDE1A\uD835\uDE10\uD835\uDE0D\uD835\uDE20"
 
 
         val ref = FirebaseAuth.getInstance().currentUser?.email
@@ -41,6 +41,12 @@ class User_Page : AppCompatActivity() {
         when(item.itemId){
             R.id.profile_menu -> {
                 val intent = Intent(this,Profile::class.java)
+                startActivity(intent)
+            }
+            R.id.sign_out_id -> {
+                FirebaseAuth.getInstance().signOut()
+
+                val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
             }
         }

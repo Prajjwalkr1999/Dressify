@@ -5,5 +5,7 @@
     <item android:title="Profile"
         android:id="@+id/profile_menu"
         app:showAsAction="always" />
-    <item android:title="Sign Out" />
+    <item android:title="Sign Out"
+        android:id="@+id/sign_out_id"/>
+
 </menu>
