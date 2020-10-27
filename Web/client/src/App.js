@@ -14,7 +14,8 @@ import login from "./pages/login";
 import cart from "./pages/cart";
 import profile from "./pages/profile";
 import landing from "./pages/landing";
-
+import forpass from "./pages/forpass"
+import passchange from "./pages/passchange"
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -47,6 +48,8 @@ class App extends Component {
                 <Route exact path="/cart" component={cart} />
                 <Route exact path="/profile" component={profile} />
                 <Route exact path="/home" component={home} />
+                <Route exact path="/forpass" component={forpass} />
+                <Route exact path="/passchange" component={passchange} />
               </Switch>
             </div>
           </Router>
