@@ -6,7 +6,13 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 
-export class navbar extends Component {
+import { withauthprov } from "./Session";
+import { withFirebase } from "./Firebase";
+
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <AppBar>
@@ -26,10 +32,22 @@ export class navbar extends Component {
           <Button color="inherit" component={Link} to="/cart">
             cart
           </Button>
+          {this.props.authUser ? (
+            <Button
+              color="inherit"
+              component={Link}
+              to="/"
+              onClick={this.props.firebase.doSignOut}
+            >
+              Signout
+            </Button>
+          ) : (
+            <p>please signin</p>
+          )}
         </Toolbar>
       </AppBar>
     );
   }
 }
 
-export default navbar;
+export default withFirebase(withauthprov(Navbar));
