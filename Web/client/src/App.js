@@ -18,15 +18,15 @@ import landing from "./pages/landing";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: "#6effe8",
-      main: "#1de9b6",
-      dark: "#00b686",
+      light: "#c158dc",
+      main: "#8e24aa",
+      dark: "#5c007a",
       contrastText: "#fff",
     },
     secondary: {
-      light: "#52c7b8",
-      main: "#009688",
-      dark: "##00675b",
+      light: "#ffc4ff",
+      main: "#ce93d8",
+      dark: "#9c64a6",
       contrastText: "#fff",
     },
   },
