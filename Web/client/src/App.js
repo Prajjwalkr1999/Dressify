@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
+import { withAuthentication } from "./components/Session";
+
 //components
 import Navbar from "./components/Navbar";
 
@@ -59,4 +61,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuthentication(App);
