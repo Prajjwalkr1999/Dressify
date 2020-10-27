@@ -10,12 +10,12 @@
         android:id="@+id/person_password_id"
         android:layout_width="267dp"
         android:layout_height="40dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Password(alteast 6 characters)"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/person_email_id" />
 
@@ -71,10 +71,23 @@
         android:id="@+id/create_profile_bttn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
-        android:layout_marginLeft="127dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="37dp"
         android:text="Create Profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_phoneno" />
+
+    <EditText
+        android:id="@+id/profile_phoneno"
+        android:layout_width="265dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:hint="Phone No"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/person_password_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>

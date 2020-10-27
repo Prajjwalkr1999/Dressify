@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Profile"
+        android:id="@+id/profile_menu"
         app:showAsAction="always" />
     <item android:title="Sign Out" />
 </menu>
