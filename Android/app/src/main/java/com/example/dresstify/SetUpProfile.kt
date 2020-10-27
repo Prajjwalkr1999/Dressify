@@ -175,7 +175,7 @@ class SetUpProfile : AppCompatActivity() {
 
         Log.i(TAG_setupProfile,"Uploading image..")
         val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+        val ref = FirebaseStorage.getInstance().getReference("images/$filename")
 
         ref.putFile(selectedPhotoUri!!)
                 .addOnSuccessListener {
