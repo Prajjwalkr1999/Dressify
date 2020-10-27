@@ -21,7 +21,7 @@ class Profile : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         val actionBar = supportActionBar
-        actionBar?.title = "DRESSIFY"
+        actionBar?.title = "My Profile"
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

@@ -49,7 +49,21 @@ class User_Page : AppCompatActivity() {
                 val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.navbar_profile -> {
+                val intent = Intent(this,Profile::class.java)
+                startActivity(intent)
+            }
+
+            R.id.navbar_signout -> {
+                FirebaseAuth.getInstance().signOut()
+
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }
