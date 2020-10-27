@@ -1,7 +1,9 @@
 package com.example.dresstify
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -9,51 +11,21 @@ import android.view.View
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 
 class User_Page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user__page)
 
-//        val toolbar :Toolbar
-//
-//        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
-//        val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this,drawer,R.string.nav_open,R.string.nav_close)
-//        drawer.addDrawerListener(toggle)
-//        toggle.setDrawerIndicatorEnabled(true)
-//
 
-//        setSupportActionBar(Toolbar)
         val actionBar = supportActionBar
-        actionBar?.title = "Hello Toolbar"
+        actionBar?.title = "\uD835\uDCD3\uD835\uDCFB\uD835\uDCEE\uD835\uDCFC\uD835\uDCFC\uD835\uDCF2\uD835\uDCEF\uD835\uDD02"
 
 
-        // Initialize the action bar drawer toggle instance
-//        val drawerToggle:ActionBarDrawerToggle = object : ActionBarDrawerToggle(
-//            this,
-//            drawer_layout,
-//            toolbar,
-//            R.string.drawer_open,
-//            R.string.drawer_close
-//        ){
-//            override fun onDrawerClosed(view: View){
-//                super.onDrawerClosed(view)
-//                //toast("Drawer closed")
-//            }
-//
-//            override fun onDrawerOpened(drawerView: View){
-//                super.onDrawerOpened(drawerView)
-//                //toast("Drawer opened")
-//            }
-//        }
-
-//
-//        // Configure the drawer layout to add listener and show icon on toolbar
-//        drawerToggle.isDrawerIndicatorEnabled = true
-//        drawer_layout.addDrawerListener(drawerToggle)
-//        drawerToggle.syncState()
-
-
+        val ref = FirebaseAuth.getInstance().currentUser?.email
+        Log.i("main",ref.toString())
 
 
     }
@@ -66,6 +38,12 @@ class User_Page : AppCompatActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.profile_menu -> {
+                val intent = Intent(this,Profile::class.java)
+                startActivity(intent)
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
 }
