@@ -100,7 +100,19 @@ class ProfileUp extends Component {
             this.props.firebase.db
               .doc(`/users/${userId}`)
               .update({ image: fireBaseUrl });
-          });
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: this.state.image })
+            };
+            console.log(JSON.stringify({ url: this.state.image }));
+            var userMatch
+            fetch('http://localhost:5000/uploader', requestOptions)
+                .then(response => response.json())
+                .then(data => userMatch=data)
+                .catch(err => console.log(err));
+            console.log(userMatch);
+        });
       }
     );
   };

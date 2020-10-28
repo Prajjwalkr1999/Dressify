@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-
+import { withFirebase } from "./components/Firebase";
 import { withAuthentication } from "./components/Session";
 
 //components
@@ -36,6 +36,9 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
+  componentDidUnmount(){
+    this.props.firebase.doSignOut();
+  }
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -61,4 +64,4 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(App);
+export default withFirebase(withAuthentication(App));
