@@ -52,11 +52,11 @@ const useStyles = {
 const INITIAL_STATE = {
   email: "",
   password: "",
-  firstName:"",
-  lastName:"",
-  country:"",
-  mobile:"",
-  DOB : "",
+  firstName: "",
+  lastName: "",
+  country: "",
+  mobile: "",
+  DOB: "",
   error: null,
 };
 
@@ -68,7 +68,15 @@ class SignUpBase extends Component {
   }
 
   onSubmit = (event) => {
-    const { firstName, lastName, email, password, mobile, DOB, country } = this.state;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      mobile,
+      DOB,
+      country,
+    } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
@@ -81,7 +89,8 @@ class SignUpBase extends Component {
           mobile: this.state.mobile,
           DOB: this.state.DOB,
           country: this.state.country,
-          image: "https://firebasestorage.googleapis.com/v0/b/dressify-59ab5.appspot.com/o/no-img.png?alt=media&token=e9f35f49-0354-49f6-bb26-7538a523b3a3",
+          image:
+            "https://firebasestorage.googleapis.com/v0/b/dressify-59ab5.appspot.com/o/no-img.png?alt=media&token=e9f35f49-0354-49f6-bb26-7538a523b3a3",
         };
         return this.props.firebase.db
           .doc(`/users/${authUser.user.uid}`)
@@ -206,7 +215,6 @@ class SignUpBase extends Component {
                   onChange={this.onChange}
                 />
               </Grid>
-            
             </Grid>
             <Button
               type="submit"
