@@ -23,6 +23,7 @@ class User_Page : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.title = "\uD835\uDE0B\uD835\uDE19\uD835\uDE0C\uD835\uDE1A\uD835\uDE1A\uD835\uDE10\uD835\uDE0D\uD835\uDE20"
 
+        
 
         val ref = FirebaseAuth.getInstance().currentUser?.email
         Log.i("main",ref.toString())
