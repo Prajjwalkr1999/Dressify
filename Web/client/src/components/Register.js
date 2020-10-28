@@ -52,6 +52,11 @@ const useStyles = {
 const INITIAL_STATE = {
   email: "",
   password: "",
+  firstName:"",
+  lastName:"",
+  country:"",
+  mobile:"",
+  DOB : "",
   error: null,
 };
 
@@ -63,7 +68,7 @@ class SignUpBase extends Component {
   }
 
   onSubmit = (event) => {
-    const { firstName, lastName, email, password } = this.state;
+    const { firstName, lastName, email, password, mobile, DOB, country } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
@@ -73,10 +78,10 @@ class SignUpBase extends Component {
           email: this.state.email,
           firstName: this.state.firstName,
           lastName: this.state.lastName,
-          mobile: "133231",
-          DOB: new Date(),
-          country: "IN",
-          image: "noimg.png",
+          mobile: this.state.mobile,
+          DOB: this.state.DOB,
+          country: this.state.country,
+          image: "https://firebasestorage.googleapis.com/v0/b/dressify-59ab5.appspot.com/o/no-img.png?alt=media&token=e9f35f49-0354-49f6-bb26-7538a523b3a3",
         };
         return this.props.firebase.db
           .doc(`/users/${authUser.user.uid}`)
@@ -87,6 +92,7 @@ class SignUpBase extends Component {
         this.props.history.push("/home");
       })
       .catch((error) => {
+        console.log(error);
         this.setState({ error });
       });
 
@@ -162,12 +168,45 @@ class SignUpBase extends Component {
                   onChange={this.onChange}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="mobile"
+                  label="Mobile Number"
+                  name="mobile"
+                  autoComplete="mobile"
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="DOB"
+                  label="Date Of Birth"
+                  name="DOB"
+                  InputLabelProps={{ shrink: true, required: true }}
+                  type="date"
+                  autoComplete="DOB"
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="country"
+                  label="Country"
+                  name="country"
+                  autoComplete="country"
+                  onChange={this.onChange}
+                />
+              </Grid>
+            
             </Grid>
             <Button
               type="submit"
