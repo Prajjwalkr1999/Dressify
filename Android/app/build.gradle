@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'com.chaquo.python'
 }
 
 android {
@@ -10,12 +11,28 @@ android {
 
     defaultConfig {
         applicationId "com.example.dresstify"
+        sourceSets{
+            main{
+                python{
+                    srcDirs = ["src/main/python"]
+                }
+            }
+        }
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+
+        python {
+
+            buildPython = "C:/Users/priyb/AppData/Local/Microsoft/WindowsApps/python3.exe"
+        }
     }
 
     buildTypes {
