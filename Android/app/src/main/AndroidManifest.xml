@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dresstify">
-        <activity android:name=".User_Page"></activity>
+        <activity android:name=".Profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dresstify.User_Page" />
+        </activity>
+        <activity android:name=".User_Page" />
         <activity android:name=".SetUpProfile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

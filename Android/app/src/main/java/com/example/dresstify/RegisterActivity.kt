@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 OnCompleteListener<AuthResult?> { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success $email , $password")
+                        Log.i(TAG, "signInWithEmail:success $email , $password")
 
                         val intent = Intent(this,User_Page::class.java)
                         startActivity(intent)
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 //                        updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Log.i(TAG, "signInWithEmail:failure", task.exception)
                         Toast.makeText(
                             this, "Authentication failed.",
                             Toast.LENGTH_SHORT
@@ -81,5 +81,7 @@ class MainActivity : AppCompatActivity() {
 
                     // ...
                 })
+
+
     }
 }

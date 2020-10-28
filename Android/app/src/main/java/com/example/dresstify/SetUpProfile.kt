@@ -205,7 +205,8 @@ class SetUpProfile : AppCompatActivity() {
         val username: EditText = findViewById(R.id.person_name_id)
         val email:EditText = findViewById(R.id.person_email_id)
         val password: EditText = findViewById(R.id.person_password_id)
-        val User = user(username.text.toString(),email?.text.toString(),password?.text.toString(),profileimageurl)
+        val phoneno_id :EditText = findViewById(R.id.profile_phoneno)
+        val User = user(username.text.toString(),email?.text.toString(),password?.text.toString(),profileimageurl,phoneno_id.text.toString())
 
         val database = FirebaseDatabase.getInstance().getReference("users")
         val id = database.push().key
@@ -222,6 +223,6 @@ class SetUpProfile : AppCompatActivity() {
 
 }
 
-class user(val username: String,val email_id: String,val password: String,val profileimageurl: String) {
-    constructor() : this("","","","")
+class user(val username: String,val email_id: String,val password: String,val profileimageurl: String,val phoneno: String) {
+    constructor() : this("","","","","")
 }
