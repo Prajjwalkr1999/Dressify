@@ -4,7 +4,7 @@ import { Button, Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { db } from '../Firebase';
+import { firestore } from '../Firebase';
 import { withFirebase } from "../Firebase";
 import { withRouter } from "react-router-dom";
 
@@ -43,7 +43,19 @@ class ProfileUp extends Component {
     super(props);
     this.state = {...INITIAL_STATE };
   }
+  // dispUser = event => {
+  //   event.preventDefault()
   
+  //   firestore.collection("users").add({
+  //     email: this.state.title,
+  //     author: this.state.author
+  //   })
+  
+  //   this.setState({ title: "", author: "" })
+  // }
+  componentDidMount(){
+    console.log(this.props.firebase.currentUser.uid);
+  }
 
   render() {
     const { classes } = this.props;
