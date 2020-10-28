@@ -2,19 +2,50 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Button, Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
+import { withStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { db } from "../Firebase";
+import { withFirebase } from "../Firebase";
+import { withRouter } from "react-router-dom";
 
-export default class Profile extends Component {
+const useStyles = {
+  paper: {
+    marginTop: "8px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: "4px",
+    backgroundColor: "#009688",
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: "16px",
+  },
+  submit: {
+    margin: "16px 0px 8px",
+  },
+};
+
+const INITIAL_STATE = {
+  email: "prajjwal@gmail.com",
+  firstName: "prajjwal",
+  lastName: "kumar",
+  country: "India",
+  mobile: "1234567890",
+  DOB: "29/12/1999",
+  error: null,
+};
+
+class ProfileUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fistName: "Piyush",
-      lastName: "Shandilya",
-      email: "piyush.shandilya1999@gmail.com",
-      phone: "9582296347",
-    };
+    this.state = { ...INITIAL_STATE };
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <Grid container spacing={3}>
@@ -31,7 +62,7 @@ export default class Profile extends Component {
               <Typography>Email</Typography>
               <Typography>{this.state.email}</Typography>
               <Typography>Phone</Typography>
-              <Typography>{this.state.phone}</Typography>
+              <Typography>{this.state.mobile}</Typography>
             </Paper>
           </Grid>
         </Grid>
@@ -39,3 +70,5 @@ export default class Profile extends Component {
     );
   }
 }
+const Profile = withRouter(withFirebase(withStyles(useStyles)(ProfileUp)));
+export default Profile;

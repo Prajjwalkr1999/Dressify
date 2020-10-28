@@ -2,9 +2,10 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Account"
-        android:id="@+id/navbar_profile"/>
-    <item android:title="Orders" />
+    <item android:title="Profile"
+        android:id="@+id/profile_menu"
+        app:showAsAction="always" />
     <item android:title="Sign Out"
-        android:id="@+id/navbar_signout"/>
+        android:id="@+id/sign_out_id"/>
+
 </menu>
