@@ -5,8 +5,10 @@ export default class profile extends Component {
   render() {
     return (
       <div>
-        <h1>Profile</h1>
-        <Profile />
+        <div className='profile-sexy'>
+          <h1> My Profile</h1>
+        </div>
+        <Profile/>
       </div>
     );
   }

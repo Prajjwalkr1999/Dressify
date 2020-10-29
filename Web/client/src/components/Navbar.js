@@ -31,9 +31,9 @@ const signedin = (firebase) => {
       <Button color="inherit" component={Link} to="/profile">
         Profile
       </Button>
-      <Button color="inherit" component={Link} to="/cart">
+      {/* <Button color="inherit" component={Link} to="/cart">
         cart
-      </Button>
+      </Button> */}
       <Button
         color="inherit"
         component={Link}
