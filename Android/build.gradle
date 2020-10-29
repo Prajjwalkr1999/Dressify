@@ -4,6 +4,8 @@ buildscript {
     repositories {
         google()
         jcenter()
+
+        maven { url "https://chaquo.com/maven" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.0"
@@ -13,6 +15,7 @@ buildscript {
         // in the individual module build.gradle files
 
         classpath 'com.google.gms:google-services:4.3.4'
+        classpath "com.chaquo.python:gradle:8.0.1"
     }
 }
 
