@@ -40,38 +40,38 @@ class User_Page : AppCompatActivity() {
 
 
 
-        val ref = FirebaseAuth.getInstance().currentUser?.email
-        val email_id: String? = ref
-
-        Log.i("user_page",ref.toString())
-
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                for(data in snapshot.children){
-
-                    Log.i("user_page","$data")
-                    val user_data = data.getValue(user::class.java)
-
-                    if(user_data?.email_id==email_id){
-
-                        val py:Python = Python.getInstance()
-                        val pyobj: PyObject = py.getModule("faces_image")
-                        val profile_url = user_data?.profileimageurl
-                        val obj: PyObject ?= pyobj.callAttr("fun",profile_url)
-
-                        Log.i("user_page",obj.toString())
-                    }
-
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-//                Log.w(, "Failed to read value.", error.toException())
-            }
-        })
+//        val ref = FirebaseAuth.getInstance().currentUser?.email
+//        val email_id: String? = ref
+//
+//        Log.i("user_page",ref.toString())
+//
+//        myRef.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//
+//                for(data in snapshot.children){
+//
+//                    Log.i("user_page","$data")
+//                    val user_data = data.getValue(user::class.java)
+//
+//                    if(user_data?.email_id==email_id){
+//
+//                        val py:Python = Python.getInstance()
+//                        val pyobj: PyObject = py.getModule("faces_image")
+//                        val profile_url = user_data?.profileimageurl
+//                        val obj: PyObject ?= pyobj.callAttr("fun",profile_url)
+//
+//                        Log.i("user_page",obj.toString())
+//                    }
+//
+//
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                // Failed to read value
+////                Log.w(, "Failed to read value.", error.toException())
+//            }
+//        })
 
 
 
