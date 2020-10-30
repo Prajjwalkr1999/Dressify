@@ -18,6 +18,7 @@ import profile from "./pages/profile";
 import landing from "./pages/landing";
 import forpass from "./pages/forpass"
 import passchange from "./pages/passchange"
+import upload from "./pages/upload";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -55,6 +56,7 @@ class App extends Component {
                 <Route exact path="/home" component={home} />
                 <Route exact path="/forpass" component={forpass} />
                 <Route exact path="/passchange" component={passchange} />
+                <Route exact path="/upload" component={upload} />
               </Switch>
             </div>
           </Router>
