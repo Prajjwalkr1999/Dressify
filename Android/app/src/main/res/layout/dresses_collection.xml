@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="15dp"
     android:layout_width="match_parent"
@@ -10,14 +10,38 @@
 
     <ImageView
         android:id="@+id/celeb_image_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round" />
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="15dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/celeb_name_id"
-        android:layout_width="match_parent"
+        android:layout_width="119dp"
+        android:layout_height="37dp"
+
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="36dp"
+        android:text="TextView"
+        android:textSize="24dp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/celeb_image_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="175dp"
-        android:text="TextView" />
-</LinearLayout>
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="20dp"
+        android:text="Buy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/celeb_image_id"
+        app:layout_constraintTop_toBottomOf="@+id/celeb_name_id" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
