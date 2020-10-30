@@ -86,7 +86,7 @@ class ProfileUp extends Component {
       return;
     }
     const uploadTask = this.props.firebase.storage
-      .ref(`/images/`)
+      .ref(`/images/${this.uploadFile.name}`)
       .put(this.uploadFile);
     //initiates the firebase side uploading
     uploadTask.on(
