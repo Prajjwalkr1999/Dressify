@@ -1,28 +1,28 @@
 package com.example.dresstify
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toolbar
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
-import com.chaquo.python.PyObject
-import com.chaquo.python.Python
-import com.chaquo.python.android.AndroidPlatform
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
+
 
 class User_Page : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user__page)
@@ -34,9 +34,36 @@ class User_Page : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("users")
 
-        if(!Python.isStarted()) {
-            Python.start(AndroidPlatform(this))
-        }
+        val db = FirebaseFirestore.getInstance()
+
+
+        val adapter = GroupAdapter<GroupieViewHolder>()
+
+        val recylerview_id :RecyclerView = findViewById(R.id.recycler_view_for_user)
+        recylerview_id.adapter = adapter
+
+
+
+        db.collection("suggestions")
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        for (document in task.result!!) {
+                            Log.i("user_page", document.id + " => " + document.data)
+
+                            adapter.add(dress_item(document.data.get("celeb") as String,
+                                document.data.get("image-url") as String))
+
+//                            adapter.add(dress_item("abc",""))
+                        }
+                    } else {
+                        Log.i("user_page", "Error getting documents.", task.exception)
+                    }
+                }
+
+//        if(!Python.isStarted()) {
+//            Python.start(AndroidPlatform(this))
+//        }
 
 
 
@@ -89,30 +116,46 @@ class User_Page : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.profile_menu -> {
-                val intent = Intent(this,Profile::class.java)
+                val intent = Intent(this, Profile::class.java)
                 startActivity(intent)
             }
             R.id.sign_out_id -> {
                 FirebaseAuth.getInstance().signOut()
 
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
 
             R.id.navbar_profile -> {
-                val intent = Intent(this,Profile::class.java)
+                val intent = Intent(this, Profile::class.java)
                 startActivity(intent)
             }
 
             R.id.navbar_signout -> {
                 FirebaseAuth.getInstance().signOut()
 
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
+
+}
+
+class dress_item(val name:String, val image_url:String) :Item<GroupieViewHolder>(){
+
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+        val celeb_name:TextView = viewHolder.itemView.findViewById(R.id.celeb_name_id)
+        val celeb_image:ImageView = viewHolder.itemView.findViewById(R.id.celeb_image_id)
+
+        celeb_name.text = name
+        Picasso.get().load(image_url).into(celeb_image)
+    }
+
+    override fun getLayout(): Int {
+        return R.layout.dresses_collection
+    }
 
 }
