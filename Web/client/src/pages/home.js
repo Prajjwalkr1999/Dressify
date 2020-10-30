@@ -7,13 +7,28 @@ class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        ele : []
+        ele : [],
+        recommend : null
     }
   }
 
   
   componentDidMount() {
+    const userId = this.props.firebase.auth.currentUser.uid;
 
+    this.props.firebase.db
+      .doc(`/users/${userId}`)
+      .get()
+      .then((snapshot) => {
+        const curUser = snapshot.data().recommend;
+        // console.log(snapshot.data());
+        this.setState({recommend : curUser});
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
+    
     this.props.firebase.db
       .collection("suggestions")
       .get()
