@@ -35,7 +35,8 @@ class home extends Component {
       .then((querySnapshot) => {
         var ar = []
         querySnapshot.forEach((doc) => {
-            ar.push(doc.data())
+          if(doc.data().celeb === this.state.recommend[0]||doc.data().celeb === this.state.recommend[1]||doc.data().celeb === this.state.recommend[2]){
+            ar.push(doc.data())}
         });
         this.setState({ele : ar})
       });

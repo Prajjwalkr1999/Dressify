@@ -127,15 +127,16 @@ class ProfileUp extends Component {
             fetch('http://localhost:5000/uploader', requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                  keysSorted = Object.keys(data).sort(function(a,b){return data[a]-data[b]})
+                  console.log(data);
+                  var keysSorted = Object.keys(data).sort(function(a,b){return data[b]-data[a]})
                   console.log(keysSorted); 
-                  userMatch = data
+                  // userMatch = data
                   this.props.firebase.db
                   .doc(`/users/${userId}`)
                   .update({ recommend: keysSorted });
                 })
                 .catch(err => console.log(err));
-            console.log(userMatch);
+            // console.log(userMatch);
         });
       }
     );
@@ -296,7 +297,7 @@ class ProfileUp extends Component {
                 alignItems="center"
               >
                 <Grid item xs={3}>
-                  <Typography variant='h5' color = 'primary' gutterBottom = {true}><b>Password</b></Typography>
+                  <Typography variant='h5' color = 'secondary' gutterBottom = {true}><b>Password</b></Typography>
                   
                   <Typography gutterBottom = {true}></Typography>
                 </Grid>
@@ -310,7 +311,7 @@ class ProfileUp extends Component {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     className={classes.submit}
                     component={Link} to="/passchange"
                   >

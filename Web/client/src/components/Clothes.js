@@ -21,7 +21,7 @@ const useStyles = {
   },
   cardMedia: {
     width: "auto",
-    height: "200px",
+    height: "400px",
   },
   cardContent: {
     flexGrow: 1,
@@ -36,8 +36,8 @@ class Clothes extends Component {
         <Grid id={this.props.id} item>
           <Card className={classes.card}>
             <CardMedia
-              className={classes.cardMedia}
-              image={this.props.img.["image-url"]}
+              className={classes.cardMedia}  
+              image={this.props.img["image-url"]}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
