@@ -126,7 +126,14 @@ class ProfileUp extends Component {
             var userMatch
             fetch('http://localhost:5000/uploader', requestOptions)
                 .then(response => response.json())
-                .then(data => userMatch=data)
+                .then(data => {
+                  keysSorted = Object.keys(data).sort(function(a,b){return data[a]-data[b]})
+                  console.log(keysSorted); 
+                  userMatch = data
+                  this.props.firebase.db
+                  .doc(`/users/${userId}`)
+                  .update({ recommend: keysSorted });
+                })
                 .catch(err => console.log(err));
             console.log(userMatch);
         });
