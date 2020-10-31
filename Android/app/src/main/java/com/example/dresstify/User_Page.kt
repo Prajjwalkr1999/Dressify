@@ -137,6 +137,11 @@ class User_Page : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.stats_id -> {
+                val intent = Intent(this,Stats::class.java)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

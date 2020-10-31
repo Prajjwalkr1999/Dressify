@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Stats">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="26dp"
+        android:text="Results of the model: "
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/stats_textview_id"
+        android:layout_width="399dp"
+        android:layout_height="645dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="{\nAamir_Khan: 17.745003685058165\n
+Ajay_Devgn: 24.747644954875614\n
+Akshay_Kumar: 16.182630964761746\n
+Ayushmann_Khurrana: 33.00579656752671\n
+Deepika_Padukone: 3.5105313090201324\n
+Farhan_Akhtar: 17.457918849039565\n
+Hrithik_Roshan: 12.008350097019244\n
+Jacqueline_Fernandez: 4.74800331339731\n
+Kiara_Advani: 0\n
+Kriti_Sanon: 8.722875692790856\n
+Nushrat_Bharucha: 14.384035568433278\n
+Priyanka_Chopra: 0.35831639443384966\n
+Sara_Ali_Khan: 7.141839634665442\n
+Shah_Rukh_Khan: 14.619346787357692\n
+Shraddha_Kapoor: 5.638961076733063\n
+Taapsee_Pannu: 4.200613286745024\n
+Vicky_Kaushal: 21.23479468295383\n}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
