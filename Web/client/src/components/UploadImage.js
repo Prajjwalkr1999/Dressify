@@ -17,7 +17,7 @@ class UploadImage extends Component{
           var imagetempUrl=[];
           this.state.ele.map((val,id,ar)=>{
             const uploadTask = this.props.firebase.storage
-                .ref(`/suggestions/jacqueline/${val.name}`)
+                .ref(`/suggestions/kiara/${val.name}`)
                 .put(val);
             console.log(val);
             uploadTask.on(
@@ -32,7 +32,7 @@ class UploadImage extends Component{
                 },
                 ()=>{
                     this.props.firebase.storage
-                        .ref("suggestions/jacqueline")
+                        .ref("suggestions/kiara")
                         .child(val.name)
                         .getDownloadURL()
                         .then((fireBaseUrl) => {
@@ -43,7 +43,7 @@ class UploadImage extends Component{
                             
                             this.props.firebase.db
                             .doc(`/suggestions/${val.name}`).set({
-                                celeb: "Jacqueline_Fernandez",
+                                celeb: "Kiara_Advani",
                                 gender: "Female",
                                 "image-url": fireBaseUrl 
                             })

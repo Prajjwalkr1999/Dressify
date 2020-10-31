@@ -46,7 +46,7 @@ class home extends Component {
   render() {
     return (
       <div className="homecontainer">
-        <h1>home</h1>
+        <h1><b>Dressify</b></h1>
         <Grid container justify="center">
           {this.state.ele.map((val, ind, ar) => {
             return <Clothes id={ind} img={val} />;
