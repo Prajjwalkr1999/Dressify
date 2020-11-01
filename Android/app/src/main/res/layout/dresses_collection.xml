@@ -23,15 +23,17 @@
 
     <TextView
         android:id="@+id/celeb_name_id"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_width="148dp"
+        android:layout_height="36dp"
 
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="44dp"
         android:text="TextView"
+        android:textColor="@color/black"
         android:textSize="24dp"
         android:textStyle="italic"
+        app:backgroundTint="#D8DCF7"
         app:layout_constraintStart_toEndOf="@+id/celeb_image_id"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,13 +41,42 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="9dp"
         android:text="Buy"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"
+        app:backgroundTint="#D8DCF7"
+        app:layout_constraintStart_toEndOf="@+id/celeb_image_id"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="149dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="15dp"
+        android:background="#778AF2"
+        android:drawableLeft="@android:drawable/ic_input_add"
+        android:text="WishList"
+        android:textColor="@color/black"
+        app:backgroundTint="#D8DCF7"
         app:layout_constraintStart_toEndOf="@+id/celeb_image_id"
         app:layout_constraintTop_toBottomOf="@+id/celeb_name_id"
-        app:layout_constraintVertical_bias="0.239" />
+     />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:drawableLeft="@android:drawable/ic_menu_share"
+        android:text="Share"
+        android:textColor="@color/black"
+        app:backgroundTint="#D8DCF7"
+        app:layout_constraintStart_toEndOf="@+id/celeb_image_id"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
