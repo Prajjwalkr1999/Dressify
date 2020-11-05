@@ -5,6 +5,8 @@ A multi-platform application to find latest Bollywood/Hollywood trends that suit
 
 How to run the web application and Machine learning model:
 
-Step 1: Go to machine learning folder and run the app.py in Terminal.
-Step 2: Go to Web>client folder and type npm install in Terminal.
-Step 3: Now type npm run in the terminal (web/client folder).
+  Step 1: Go to machine learning folder and run the app.py in Terminal.
+
+  Step 2: Go to Web>client folder and type npm install in Terminal.
+
+  Step 3: Now type npm run in the terminal (web/client folder).
