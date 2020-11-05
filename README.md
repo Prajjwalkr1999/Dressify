@@ -2,7 +2,7 @@
 A multi-platform application to find latest Bollywood/Hollywood trends that suits the user based on his/her resemblance with different celebrities. A **machine learning model** is used to calculate resemblance percentage of our user with different celebrities.
 
 
-# Technologies Used
+## Technologies Used
 
 1.  A reactJS based Web app and kotlin based android app as frontend
 2.  Google firebase cloud firestore database as backend
