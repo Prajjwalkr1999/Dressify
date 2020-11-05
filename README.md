@@ -21,7 +21,7 @@ Now  run web application by following given instructions :
 3. Run npm install to install all dependencies
 4. Now run npm start 
 
-# Contributors 
+## Contributors 
 1. [Anubhav Sharma](https://github.com/anubhav360)
 2. [Piyush Shandilya](https://github.com/bluespex)
 3. [Prajjwal Kumar](https://github.com/Prajjwalkr1999)
